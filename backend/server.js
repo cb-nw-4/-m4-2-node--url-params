@@ -22,8 +22,7 @@ express()
   // ---------------------------------
   // Nothing to modify below this line
 
-  // this is our catch all endpoint. If a user navigates to any endpoint that is not
-  // defined above, they get to see our 404 page.
+  // this is our catch all endpoint.
   .get("*", (req, res) => {
     res.status(404).json({
       status: 404,
