@@ -22,19 +22,12 @@ express()
   // ---------------------------------
   // Nothing to modify below this line
 
-  // this serves up the homepage
-  .get("/", (req, res) => {
-    res
-      .status(200)
-      .json({ status: 200, message: "This is the homepage... it's empty :(" });
-  })
-
   // this is our catch all endpoint. If a user navigates to any endpoint that is not
   // defined above, they get to see our 404 page.
   .get("*", (req, res) => {
     res.status(404).json({
       status: 404,
-      message: "This is obviously not the page you are looking for.",
+      message: "This is obviously not what you are looking for.",
     });
   })
 
