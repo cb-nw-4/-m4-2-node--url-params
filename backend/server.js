@@ -3,9 +3,8 @@
 // import the needed node_modules.
 const express = require("express");
 const morgan = require("morgan");
-const bodyParser = require('body-parser')
-const data = require('./data/top50')
-
+const bodyParser = require("body-parser");
+const data = require("./data/top50");
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -22,54 +21,79 @@ express()
   // ---------------------------------
   // add new endpoints here 👇
 
-    .get('/top50', (req,res) => {
+  .get("/top50", (req, res) => {
+    res.status(200).json({
+      status: 200,
+      data: data.top50,
+    });
+  })
+
+  .get("/top50/song/:rank", (req, res) => {
+    const rank = parseInt(req.params.rank);
+    const findSong = data.top50.find((song) => {
+      return song.rank === rank;
+    });
+    if (findSong) {
       res.status(200).json({
         status: 200,
-        data: data.top50
-      })
-    })
+        data: findSong,
+      });
+    } else {
+      res.status(404).json({
+        status: 404,
+      });
+    }
+  })
 
+  .get("/top50/artist/:singer", (req, res) => {
+    const singer = req.params.singer.toLowerCase();
+    console.log(singer);
+    const newData = data.top50.map((song) => {
+      return { ...song, artist: song.artist.toLowerCase() };
+    });
+    console.log(newData);
+    const filterArtist = newData.filter((song) => {
+      return singer === song.artist;
+    });
+    if (filterArtist) {
+      res.status(200).json({
+        status: 200,
+        data: filterArtist,
+      });
+    } else {
+      res.status(404).json({
+        status: 404,
+      });
+    }
+  })
 
-    .get('/top50/song/:rank', (req,res) => {
-      const rank = parseInt(req.params.rank)
-      const findSong =  data.top50.find(song => {
-        return song.rank === rank
-      })
-      if(findSong){
-        res.status(200).json({
-          status: 200,
-          data: findSong
-        })
+  .get("/top50/popular-artist", (req, res) => {
+    const newObj = {};
+
+    data.top50.forEach((song) => {
+      if (!newObj[song.artist]) {
+        newObj[song.artist] = 1;
       } else {
-        res.status(404).json({
-          status: 404
-        })
+        newObj[song.artist] = newObj[song.artist] + 1;
       }
+    });
+
+    const objToArr = Object.entries(newObj);
+    const sortedArr = objToArr.sort((a, b) => {
+      return a[1] - b[1];
+    });
+    const topArtist = sortedArr[sortedArr.length - 1];
+    console.log(topArtist)
+    const filteredData = data.top50.filter(el => {
+      return el.artist === topArtist[0]
     })
 
-    .get('/top50/artist/:singer', (req,res) => {
-      const singer = req.params.singer.toLowerCase()
-      console.log(singer)
-      const newData = data.top50.map(song => {
-        return {...song, artist:song.artist.toLowerCase()}
-      })
-      console.log(newData)
-      const filterArtist = newData.filter(song => {
-        return singer === song.artist
-      })
-      if (filterArtist) {
-        res.status(200).json({
-          status: 200,
-          data: filterArtist
-        })
-      } else {
-        res.status(404).json({
-          status: 404
-        })
-      }
-    
+    res.status(200).json({
+      status: 200,
+      data: filteredData
+    });
+  })
 
-    })
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
