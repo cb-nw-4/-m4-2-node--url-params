@@ -24,7 +24,7 @@ const SongListItem = (props)=> {
 const Row = styled.li`
 display: flex;
 align-items:center;
-border-bottom: 1px solid black;
+border-bottom: 1px solid gray;
 padding:10px;
 width:100%;
 `

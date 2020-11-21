@@ -55,7 +55,7 @@ const Menu = styled.ul`
 
 const StyledLink = styled(Link)`
 text-decoration:none; 
-color:black;
+color:white;
 &:hover { 
   color: rgb(30,215,96);
   font-weight:bold;

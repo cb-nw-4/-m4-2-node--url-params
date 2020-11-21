@@ -64,7 +64,8 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #fafafa;
+    background: black;
+    color:white;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
