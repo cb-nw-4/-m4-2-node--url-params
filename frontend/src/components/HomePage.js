@@ -22,17 +22,17 @@ const HomePage = () => {
         <h2 style={{ marginTop: "24px" }}>Popular Links</h2>
         <Menu>
           <li>
-            <Link to="/music">All Songs</Link>
+            <StyledLink to="/music">All Songs</StyledLink>
           </li>
           <li>
-            <Link to="/most-popular-artist">Songs by most popular artist</Link>
+            <StyledLink to="/most-popular-artist">Songs by most popular artist</StyledLink>
           </li>
         </Menu>
         <h2>Artists on this list</h2>
         <Menu>
           {artists.map((artist) => (
             <li>
-              <Link to={`/music/artist/${artist}`}>{artist}</Link>
+              <StyledLink to={`/music/artist/${artist}`}>{artist}</StyledLink>
             </li>
           ))}
         </Menu>
@@ -52,5 +52,14 @@ const Menu = styled.ul`
     flex: 1 0 50%;
   }
 `;
+
+const StyledLink = styled(Link)`
+text-decoration:none; 
+color:white;
+&:hover { 
+  color: rgb(30,215,96);
+  font-weight:bold;
+}
+`
 
 export default HomePage;
