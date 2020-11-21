@@ -94,6 +94,19 @@ express()
     });
   })
 
+  .get('/top50/artist', (req,res) => {
+    const listOfArtists = data.top50.map(el => {
+      return el.artist
+    })
+    const cleanedArtistArr = new Set(listOfArtists)
+    const setToArr = [...cleanedArtistArr]
+
+    res.status(200).json({
+      status: 200,
+      data: setToArr
+    })
+  })
+
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
