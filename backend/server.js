@@ -3,6 +3,27 @@
 // import the needed node_modules.
 const express = require("express");
 const morgan = require("morgan");
+const bodyParser = require("body-parser");
+
+const top50 = require('./data/top50');
+const popularSongsArr = top50.top50;
+
+const handleSongs = (req, res) => {
+  res.status(200).json({ status: 200, data: popularSongsArr });
+}
+
+const handleEachSong = (req, res) => {
+  const rank = req.params.rank;
+  const song = popularSongsArr.find((song) => {
+    return song.rank === parseInt(rank);
+  })
+  if (song) {
+    res.status(200).json({ status: 200, data: song });
+  }
+  else {
+    res.status(404).json({ status: 404, message: 'Song not found.' });
+  }
+}
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -18,6 +39,9 @@ express()
   // Nothing to modify above this line
   // ---------------------------------
   // add new endpoints here 👇
+  .get('/top50', handleSongs)
+
+  .get('/top50/song/:rank', handleEachSong)
 
   // add new endpoints here ☝️
   // ---------------------------------
