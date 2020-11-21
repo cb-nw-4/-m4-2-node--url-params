@@ -6,6 +6,10 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require('body-parser');
 const data = require('./data/top50');
+const handleSound = require('./handleSound');
+
+
+
 
 
 // Below are methods that are included in express(). We chain them for convenience.
@@ -28,8 +32,9 @@ app.get('/top50', (req, res) =>{
     status: 200,
     data: data.top50
   })
-
 })
+
+app.get('/top50/song/:rank', handleSound);
 
 
 // add new endpoints here ☝️
