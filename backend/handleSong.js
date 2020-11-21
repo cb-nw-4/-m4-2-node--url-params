@@ -1,11 +1,11 @@
-const data = require("./data/top50");
+const {top50} = require("./data/top50");
 
 
 
 const handleSong =  (req, res) =>{
 
     const songRank = req.params.rank;
-    const song = data.top50.filter(elm => (elm.rank == songRank))
+    const song = top50.filter(elm => (elm.rank == songRank))
     
 
 

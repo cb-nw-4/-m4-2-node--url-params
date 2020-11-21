@@ -1,4 +1,4 @@
-const data = require("./data/top50");
+const {top50} = require("./data/top50");
 
 
 
@@ -6,7 +6,7 @@ const handleArtist =  (req, res) =>{
 
     const artistName = req.params.name.toLowerCase();
 
-    const song = data.top50.filter(elm => (elm.artist.toLowerCase() == artistName));
+    const song = top50.filter(elm => (elm.artist.toLowerCase() == artistName));
 
 
     if(song.length === 0){

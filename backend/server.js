@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require('body-parser');
-const data = require('./data/top50');
+const {top50} = require('./data/top50');
 const handleSong = require('./handleSong');
 const handleArtist = require("./handleArtist");
 const popularArtist = require("./popularArtist")
@@ -30,7 +30,7 @@ app.get('/top50', (req, res) =>{
 
   res.status(200).json({
     status: 200,
-    data: data.top50
+    data: top50
   })
 })
 
