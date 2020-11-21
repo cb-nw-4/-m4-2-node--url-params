@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 import Header from "./Header";
 import Content from "./Content";
+import SongListItem from "./SongListItem"
 
 const PopularArtistPage = () => {
   const [songs, setSongs] = useState([]);
@@ -19,7 +20,13 @@ const PopularArtistPage = () => {
   return (
     <>
       <Header pageTitle="Most Popular Artist" />
-      <Content>Most popular artist's songs...</Content>
+      <Content>
+        <ul>
+          {songs.map((element)=>{ 
+            return (<SongListItem key={element.rank} song={element}></SongListItem>);
+          })}
+        </ul>
+      </Content>
     </>
   );
 };
