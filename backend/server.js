@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');
 const data = require('./data/top50');
 const handleSong = require('./handleSong');
 const handleArtist = require("./handleArtist");
-
+const popularArtist = require("./popularArtist")
+const handleArtistList = require("./handleArtistList")
 
 
 // Below are methods that are included in express(). We chain them for convenience.
@@ -34,8 +35,11 @@ app.get('/top50', (req, res) =>{
 })
 
 app.get('/top50/song/:rank', handleSong);
+app.get('/top50/artist', handleArtistList);
 
 app.get('/top50/artist/:name', handleArtist);
+
+app.get('/top50/popular-artist', popularArtist);
 
 
 // add new endpoints here ☝️
