@@ -25,6 +25,19 @@ const handleEachSong = (req, res) => {
   }
 }
 
+const handleByArtistName = (req, res) => {
+  const artist = req.params.artist.toLowerCase();
+  const song = popularSongsArr.filter((song) => {
+    return song.artist.toLowerCase().split(' ').join('') === artist;
+  })
+  if (song.length > 0) {
+    res.status(200).json({ status: 200, data: song });
+  }
+  else {
+    res.status(404).json({ status: 404, message: 'Artist not found.' });
+  }
+}
+
 express()
   // Below are methods that are included in express(). We chain them for convenience.
   // --------------------------------------------------------------------------------
@@ -42,6 +55,8 @@ express()
   .get('/top50', handleSongs)
 
   .get('/top50/song/:rank', handleEachSong)
+
+  .get('/top50/artist/:artist', handleByArtistName)
 
   // add new endpoints here ☝️
   // ---------------------------------
