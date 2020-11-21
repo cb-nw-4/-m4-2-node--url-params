@@ -6,7 +6,7 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require('body-parser');
 const data = require('./data/top50');
-const handleSound = require('./handleSound');
+const handleSong = require('./handleSong');
 
 
 
@@ -34,7 +34,7 @@ app.get('/top50', (req, res) =>{
   })
 })
 
-app.get('/top50/song/:rank', handleSound);
+app.get('/top50/song/:rank', handleSong);
 
 
 // add new endpoints here ☝️

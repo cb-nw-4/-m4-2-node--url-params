@@ -2,7 +2,7 @@ const data = require("./data/top50");
 
 
 
-const handleSound =  (req, res) =>{
+const handleSong =  (req, res) =>{
 
     const songRank = req.params.rank;
     const song = data.top50.filter(elm => (elm.rank == songRank))
@@ -24,4 +24,4 @@ const handleSound =  (req, res) =>{
 }
 
 
-module.exports=  handleSound ;
+module.exports=  handleSong ;
