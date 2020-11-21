@@ -15,12 +15,14 @@ const handleSong =  (req, res) =>{
             status: 404,
             message: "song not found."
         })
-    } 
+    } else{
 
-    res.status(200).json({
-        status: 200,
-        data : song
-    })    
+        res.status(200).json({
+            status: 200,
+            data : song
+        })    
+    }
+
 }
 
 
