@@ -3,7 +3,9 @@
 // import the needed node_modules.
 const express = require("express");
 const morgan = require("morgan");
-
+const bodyParser = require("body-parser");
+const { handleTop50Request, handleRankSongRequest, handleArtistSongsRequest, handleMostPopularArtist, handleArtists } = require('./handlers');
+ 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
   // --------------------------------------------------------------------------------
@@ -18,6 +20,15 @@ express()
   // Nothing to modify above this line
   // ---------------------------------
   // add new endpoints here 👇
+  .get('/top50', handleTop50Request)
+
+  .get('/top50/song/:rank', handleRankSongRequest)
+
+  .get('/top50/artist/:name', handleArtistSongsRequest)
+
+  .get('/top50/popular-artist', handleMostPopularArtist)  
+
+  .get('/top50/artist', handleArtists)
 
   // add new endpoints here ☝️
   // ---------------------------------
