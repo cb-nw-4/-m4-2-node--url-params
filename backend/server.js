@@ -46,6 +46,30 @@ express()
         })
       }
     })
+
+    .get('/top50/artist/:singer', (req,res) => {
+      const singer = req.params.singer.toLowerCase()
+      console.log(singer)
+      const newData = data.top50.map(song => {
+        return {...song, artist:song.artist.toLowerCase()}
+      })
+      console.log(newData)
+      const filterArtist = newData.filter(song => {
+        return singer === song.artist
+      })
+      if (filterArtist) {
+        res.status(200).json({
+          status: 200,
+          data: filterArtist
+        })
+      } else {
+        res.status(404).json({
+          status: 404
+        })
+      }
+    
+
+    })
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
