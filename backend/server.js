@@ -4,6 +4,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const { top50 } = require('./data/top50');
 
 express()
   // Below are methods that are included in express(). We chain them for convenience.
@@ -19,6 +20,9 @@ express()
   // Nothing to modify above this line
   // ---------------------------------
   // add new endpoints here 👇
+  .get('/', (req, res) => {
+    res.status(200).json({status: 200, data: top50}) ;
+  })
 
   // add new endpoints here ☝️
   // ---------------------------------
