@@ -8,9 +8,10 @@ const HomePage = () => {
   const [artists, setArtists] = useState([]);
 
   useEffect(() => {
-    fetch(`/top50/artist`)
+    fetch(`/top50/`)
       .then((res) => res.json())
       .then((json) => {
+        console.log(json.data);
         setArtists(json.data);
       });
   }, []);
@@ -30,9 +31,9 @@ const HomePage = () => {
         </Menu>
         <h2>Artists on this list</h2>
         <Menu>
-          {artists.map((artist) => (
+          {artists.map((artist,i) => (
             <li>
-              <Link to={`/music/artist/${artist}`}>{artist}</Link>
+              <Link key={i} to={`/music/artist/${artist.artist}`}>{artist.artist}</Link>
             </li>
           ))}
         </Menu>
