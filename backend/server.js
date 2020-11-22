@@ -48,17 +48,17 @@ express()
   })
 
 
-  .get('/top50/artist/:id', (req, res) => {
-    const { id } = req.params;
+  .get('/top50/artist/:artist', (req, res) => {
+    const { artist } = req.params;
 
-    let artist = top50.filter(song => song.artist.toString() === id);
+    let songs = top50.filter(song => song.artist.toString() === artist);
 
-    console.log(artist);
+    console.log(songs);
 
-    if (artist.length > 0) {
+    if (songs.length > 0) {
       res.status(200).json({
         "status": 200,
-        "data": artist,
+        "data": songs,
       })
     } else {
       res.status(404).json({
@@ -66,6 +66,41 @@ express()
         "message": "Artist not found",
       });
     }
+  })
+
+
+  .get('/top50/popular-artist', (req, res) => {
+    const { id } = req.params;
+
+    let artistToHits = {};
+
+    top50.forEach((song) => {
+      artistToHits[song.artist] = 0;
+    });
+
+    top50.forEach((song) => {
+      artistToHits[song.artist] += 1;
+    });
+
+    const artistPairs = Object.entries(artistToHits);
+
+    let artist;
+    let maxNumHits = 0;
+
+    artistPairs.forEach((artistPair) => {
+      if (artistPair[1] > maxNumHits) {
+        maxNumHits = artistPair[1];
+        artist = artistPair[0];
+      }
+    })
+
+    let songs = top50.filter(song => song.artist.toString() === artist);
+
+    res.status(200).json({
+      "status": 200,
+      "data": songs,
+    })
+
   })
 
   // add new endpoints here ☝️
