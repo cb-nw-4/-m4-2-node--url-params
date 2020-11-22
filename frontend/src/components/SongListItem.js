@@ -39,7 +39,7 @@ const Span = styled.span`
 const Li = styled.li`
   padding-top: 2rem;
   padding-bottom: 0.4rem;
-  border-top: 1px black solid;
+  border-bottom: 1px black solid;
   display: flex;
   justify-content: space-around;
 `;
