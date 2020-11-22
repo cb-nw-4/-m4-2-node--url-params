@@ -28,6 +28,25 @@ express()
     });
   })
 
+
+  .get('/top50/song/:id', (req, res) => {
+    const { id } = req.params;
+
+    let song = top50.filter(song => song.rank.toString() === id);
+
+    if (song.length > 0) {
+      res.status(200).json({
+        "status": 200,
+        "data": song[0],
+      })
+    } else {
+      res.status(404).json({
+        "status": 404,
+        "message": "Song not found.",
+      });
+    }
+  })
+
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
