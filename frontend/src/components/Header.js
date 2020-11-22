@@ -15,7 +15,8 @@ const Wrapper = styled.header`
   align-items: center;
   height: 60px;
   border-bottom: 1px solid #808080;
-  padding: 0 24px;
+  padding: 24px;
+  padding-bottom: 1rem;
 `;
 const StyledH1 = styled.h1``;
 
