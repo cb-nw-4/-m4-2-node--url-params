@@ -100,8 +100,19 @@ express()
       "status": 200,
       "data": songs,
     })
-
   })
+
+.get('/top50/artist', (req, res) => {
+  let artistSet = new Set();
+  top50.map((entry) => {
+    artistSet.add(entry.artist);
+  })
+
+  res.status(200).json({
+    "status": 200,
+    "data": [...artistSet],
+  })
+})
 
   // add new endpoints here ☝️
   // ---------------------------------
