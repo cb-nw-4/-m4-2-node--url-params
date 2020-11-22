@@ -47,6 +47,27 @@ express()
     }
   })
 
+
+  .get('/top50/artist/:id', (req, res) => {
+    const { id } = req.params;
+
+    let artist = top50.filter(song => song.artist.toString() === id);
+
+    console.log(artist);
+
+    if (artist.length > 0) {
+      res.status(200).json({
+        "status": 200,
+        "data": artist,
+      })
+    } else {
+      res.status(404).json({
+        "status": 404,
+        "message": "Artist not found",
+      });
+    }
+  })
+
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
