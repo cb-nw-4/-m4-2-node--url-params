@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import Header from "./Header";
 import Content from "./Content";
 import SongList from "./SongList"
