@@ -52,6 +52,42 @@ express()
     }
   })
 
+  // Return most popular artist
+  .get('/top50/popular-artist', (req, res) => {
+    // Get count of all artists
+    let entries = {};
+
+    for (let i = 0; i < top50.length; i++) {
+      if (entries.hasOwnProperty(top50[i].artist)) {
+        entries[top50[i].artist] = entries[top50[i].artist] + 1;
+      } else {
+        entries[top50[i].artist] = 1;
+      }
+    }
+
+    // Find the highest count
+    let highCount = 0;
+
+    Object.values(entries).forEach(count => {
+
+      if (count > highCount) {
+        highCount = count;
+      }
+    });
+
+    // Return all entries equal to the high count.  This will
+    // catch ties.
+    let result = [];
+
+    for (const [key, value] of Object.entries(entries)) {
+      if (value === highCount) {
+        result = [...result, ...top50.filter(song => song.artist === key)];
+      }
+    }
+
+    res.status(200).json({ status: 200, data: result });
+  })
+
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
