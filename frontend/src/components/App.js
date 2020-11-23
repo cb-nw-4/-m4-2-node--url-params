@@ -28,6 +28,7 @@ const App = () => {
           <Route exact path="/most-popular-artist">
             <PopularArtistPage />
           </Route>
+          <Route exact path="/top50"></Route>
         </Switch>
       </div>
     </BrowserRouter>
