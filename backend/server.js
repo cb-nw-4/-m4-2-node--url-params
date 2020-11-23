@@ -38,6 +38,48 @@ const handleByArtistName = (req, res) => {
   }
 }
 
+const handlePopularArtist = (req, res) => {
+  const artistArr = popularSongsArr.map((song) => {
+    return song.artist;
+  })
+  
+  let frequency = {};
+  let key;
+  for (let i = 0; i < artistArr.length; i++) {
+      key = artistArr[i];
+      if(key in frequency) {
+          frequency[key]++;
+      }
+      else {
+          frequency[key] = 1;
+      }
+  }
+
+  let uniques = [];
+  for (key in frequency) {
+      uniques.push(key);
+  }
+
+  const compareFrequency = (a, b) => {
+      return frequency[b] - frequency[a];
+  }
+
+  const artistArrByPopularity = uniques.sort(compareFrequency);
+  const songsByMostPopularArtist = popularSongsArr.filter((song) => {
+    return song.artist === artistArrByPopularity[0]
+  })
+  res.status(200).json({ status: 200, data: songsByMostPopularArtist });
+}
+
+const handleArtistListArr = (req, res) => {
+  const artistSet = new Set();
+  for (let i = 0; i < popularSongsArr.length; i++) {
+    artistSet.add(popularSongsArr[i].artist);
+  }
+  const artistArr = [...artistSet];
+  res.status(200).json({ status: 200, data: artistArr });
+}
+
 express()
   // Below are methods that are included in express(). We chain them for convenience.
   // --------------------------------------------------------------------------------
@@ -57,6 +99,10 @@ express()
   .get('/top50/song/:rank', handleEachSong)
 
   .get('/top50/artist/:artist', handleByArtistName)
+
+  .get('/top50/popular-artist', handlePopularArtist)
+
+  .get('/top50/artist', handleArtistListArr)
 
   // add new endpoints here ☝️
   // ---------------------------------
