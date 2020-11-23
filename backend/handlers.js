@@ -27,9 +27,8 @@ const handleMostPopularArtist = (req, res) => {
   });
 
   let sortedArr = Object.keys(numberSongsPerArtist).sort(function(a,b){
-    return numberSongsPerArtist[a].length - numberSongsPerArtist[b].length;
-  });
-  sortedArr = sortedArr.reverse(); 
+    return numberSongsPerArtist[b].length - numberSongsPerArtist[a].length;
+  });  
   res.status(200).json({ status: 200,  data : numberSongsPerArtist[sortedArr[0]] });  
 };
 
