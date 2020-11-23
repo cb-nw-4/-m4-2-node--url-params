@@ -1,22 +1,30 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
 
 const SongListItem = (({song})=>{
     return(
-        <List>
-            <div>
-                <Rank>{`#${song.rank}`}</Rank>
-                <Stream>{`(${song.streams} streams)`}</Stream>             
-            </div>
-            <MiddleWrapper>
-                <Title><strong>{song.title}</strong></Title>
-                <p><i>{`by ${song.artist}`}</i></p>                 
-            </MiddleWrapper>
-            <Date>{`publication date: ${song.publicationDate}`} </Date> 
-        </List>
+        < StyledLink to={`/music/${song.rank}`} >
+            <List>
+                <div>
+                    <Rank>{`#${song.rank}`}</Rank>
+                    <Stream>{`(${song.streams} streams)`}</Stream>             
+                </div>
+                <MiddleWrapper>
+                    <Title><strong>{song.title}</strong></Title>
+                    <p><i>{`by ${song.artist}`}</i></p>                 
+                </MiddleWrapper>
+                <Date>{`publication date: ${song.publicationDate}`} </Date> 
+            </List>
+        </StyledLink>
     );
 });
+
+const StyledLink = styled(Link)`
+  text-decoration: none;  
+  color: inherit;
+`;
 
 const Date = styled.p`
    align-self: flex-end;
