@@ -31,12 +31,14 @@ const Song = styled.div`
     flex-direction: column;
     position: relative;
     left: 80px;
+    top: -5px;
 `;
 
 const Title = styled.h2`
     font-weight: bold;
     font-size: 20px;
     font-family: 'Roboto Slab', serif;
+    padding-bottom: 5px;
 `;
 
 const Artist = styled.p`
