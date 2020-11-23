@@ -13,7 +13,7 @@ const SongList = ({songs})=> {
 };
 
 const ListContainer = styled.ul`
-    margin: 15px 0;
+    margin: 20px 0;
 `;
 
 
