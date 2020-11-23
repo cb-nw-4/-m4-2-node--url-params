@@ -9,9 +9,9 @@ const handleTop50Request = (req, res) => {
 };
 
 const handleRankSongRequest = (req, res) => { 
-  const requestSong = top50.filter((song) => (req.params.rank === song.rank.toString()));  
-  requestSong.length === 0 ? res.status(404).json({ status: 404, data: "Song not found." }):
-                             res.status(200).json({ status: 200,  data: requestSong });  
+  const requestSong = top50.find((song) => (req.params.rank === song.rank.toString()));    
+  requestSong === undefined ? res.status(404).json({ status: 404, data: "Song not found." }):
+                              res.status(200).json({ status: 200,  data: requestSong });  
 };
 
 const handleArtistSongsRequest = (req, res) => { 
