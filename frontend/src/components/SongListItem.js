@@ -5,19 +5,23 @@ const Container = styled.div`
     display: flex;
     margin-top: 20px;
     border-bottom: 1px solid #808080;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 `;
 
 const Ranking = styled.div`
     display: flex;
     flex-direction: column;
+    position: relative;
+    top: 10px;
 `;
 
-const Rank = styled.span`
+const Rank = styled.h2`
     font-size: 40px;
+    font-family: 'Roboto Slab', serif;
+    font-weight: normal;
 `;
 
-const NumOfStreams = styled.span`
+const NumOfStreams = styled.p`
     color: #808080;
     font-size: 15px;
 `;
@@ -27,15 +31,15 @@ const Song = styled.div`
     flex-direction: column;
     position: relative;
     left: 80px;
-    top: -10px;
 `;
 
-const Title = styled.span`
+const Title = styled.h2`
     font-weight: bold;
     font-size: 20px;
+    font-family: 'Roboto Slab', serif;
 `;
 
-const Artist = styled.span`
+const Artist = styled.p`
     color: #808080;
     font-size: 20px;
 `;
@@ -45,9 +49,9 @@ const Pub = styled.div`
     right: 20px;
 `;
 
-const PublicationDate = styled.span`
+const PublicationDate = styled.p`
     position: relative;
-    top: 60px;
+    top: 50px;
     color: #808080;
     font-size: 15px;
 `;
