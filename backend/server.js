@@ -22,17 +22,31 @@ express()
   // ---------------------------------
   // add new endpoints here 👇
 
+  // Return all songs
   .get('/top50', (req, res) => {
     res.status(200).json({ status: 200, data: top50 });
   })
 
-  .get('/top50/song/:id', (req, res) => {
-    const rank = Number(req.params.id);
+  // Return song by rank
+  .get('/top50/song/:rank', (req, res) => {
+    const rank = Number(req.params.rank);
     const result = top50.filter((song) => song.rank === rank);
 
     if (result.length > 0) {
       const [song] = result;
       res.status(200).json({ status: 200, data: song });
+    } else {
+      res.status(404).json({ status: 404, message: 'Song not found'});
+    }
+  })
+
+  // Return song by artist
+  .get('/top50/artist/:artist', (req, res) => {
+    const artist = req.params.artist.toLowerCase();
+    const result = top50.filter((song) => song.artist.toLowerCase() === artist);
+
+    if (result.length > 0) {
+      res.status(200).json({ status: 200, data: result });
     } else {
       res.status(404).json({ status: 404, message: 'Song not found'});
     }
