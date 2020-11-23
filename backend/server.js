@@ -88,6 +88,14 @@ express()
     res.status(200).json({ status: 200, data: result });
   })
 
+    // Return a list of unique artists
+    .get('/top50/artist', (req, res) => {
+      const artistSet = new Set();
+
+      top50.forEach(song => artistSet.add(song.artist));
+      res.status(200).json({ status: 200, data: [...artistSet] });
+    })
+
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
