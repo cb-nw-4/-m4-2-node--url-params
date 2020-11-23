@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header from "./Header";
 import Content from "./Content";
+import SongListItem from "./SongListItem";
+
 
 const ArtistPage = () => {
   const { artistName } = useParams();
@@ -20,7 +22,7 @@ const ArtistPage = () => {
   return (
     <>
       <Header pageTitle={`Songs by ${artistName}`} />
-      <Content>Songs by this artist...</Content>
+      <Content><SongListItem songs={songs} /></Content>
     </>
   );
 };
