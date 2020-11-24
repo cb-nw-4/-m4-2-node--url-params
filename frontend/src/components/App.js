@@ -6,6 +6,7 @@ import SongPage from "./SongPage";
 import PopularArtistPage from "./PopularArtistPage";
 import ArtistPage from "./ArtistPage";
 import GlobalStyles from "./GlobalStyles";
+import SongList from "./SongList";
 
 const App = () => {
   return (
