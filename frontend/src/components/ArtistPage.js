@@ -22,7 +22,7 @@ const ArtistPage = () => {
   return (
     <>
       <Header pageTitle={`Songs by ${artistName}`} />
-      <Content>{{songs}}</Content>
+      <Content><SongList songs={songs}></SongList></Content>
     </>
   );
 };
