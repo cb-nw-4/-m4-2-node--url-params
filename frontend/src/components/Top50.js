@@ -15,8 +15,6 @@ const Top50 = () => {
       });
   }, []);
 
-  // console.log(allSongs);
-
   return (
     <>
       <Header pageTitle="Top 50 Songs Streamed on Spotify" />
