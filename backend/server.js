@@ -6,6 +6,22 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const { top50 } = require('./data/top50');
 
+const handleRank = (req,res) => {
+  const rank = parseInt(req.params.rank);
+    //console.log(rank);
+  const songObj = top50.find(item => item.rank === rank); 
+    //console.log(top50);
+    //console.log(songObj);
+    if (songObj) {
+      res.json({status: 200, data: songObj}) 
+    } else {
+      res.json({status: 404, message: "Song not found."}) 
+    }
+}
+
+
+
+
 express()
   // Below are methods that are included in express(). We chain them for convenience.
   // --------------------------------------------------------------------------------
@@ -24,6 +40,8 @@ express()
     res.status(200).json({status: 200, data: top50}) ;
   })
 
+  .get('/top50/song/:rank', handleRank)
+
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
@@ -37,4 +55,4 @@ express()
   })
 
   // Node spins up our server and sets it to listen on port 8000.
-  .listen(3000, () => console.log(`Listening on port 3000`));
+  .listen(8000, () => console.log(`Listening on port 8000`));
