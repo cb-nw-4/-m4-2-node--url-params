@@ -26,9 +26,9 @@ const handleEachSong = (req, res) => {
 }
 
 const handleByArtistName = (req, res) => {
-  const artist = req.params.artist.toLowerCase();
+  const artistName = req.params.artistName.toLowerCase();
   const song = popularSongsArr.filter((song) => {
-    return song.artist.toLowerCase().split(' ').join('') === artist;
+    return song.artist.toLowerCase() === artistName;
   })
   if (song.length > 0) {
     res.status(200).json({ status: 200, data: song });
@@ -98,7 +98,7 @@ express()
 
   .get('/top50/song/:rank', handleEachSong)
 
-  .get('/top50/artist/:artist', handleByArtistName)
+  .get('/top50/artist/:artistName', handleByArtistName)
 
   .get('/top50/popular-artist', handlePopularArtist)
 

@@ -31,7 +31,7 @@ const HomePage = () => {
         <h2>Artists on this list</h2>
         <Menu>
           {artists.map((artist) => (
-            <li>
+            <li key={artist}>
               <Link to={`/music/artist/${artist}`}>{artist}</Link>
             </li>
           ))}
