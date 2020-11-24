@@ -47,7 +47,6 @@ const Menu = styled.ul`
   padding: 16px;
   display: flex;
   flex-wrap: wrap;
-
   li {
     flex: 1 0 50%;
   }
