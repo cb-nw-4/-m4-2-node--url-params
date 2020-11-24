@@ -5,9 +5,15 @@ const SongList = (props) => {
   return (
     <>
       <ul>
-        {props.songs.forEach(song => {
+        {props.songs.map(song => {
           return (
-            <SongListItem />
+            <SongListItem
+              rank={song.rank}
+              title={song.title}
+              artist={song.artist}
+              streams={song.streams}
+              publicationDate={song.publicationDate}
+            />
         );})}
       </ul>
     </>
