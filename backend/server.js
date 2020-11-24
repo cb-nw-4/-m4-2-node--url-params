@@ -19,6 +19,18 @@ const handleRank = (req,res) => {
     }
 }
 
+const handleArtist = (req,res) => {
+  const artist = req.params.artist;
+  const artistObj = top50.filter(item => item.artist.toLowerCase().replace(" ","") === artist.toLowerCase()); 
+  console.log(artistObj);
+  
+    if (artistObj != 0) { 
+      res.json({status: 200, data: artistObj}) 
+    } else {
+      res.json({status: 404}) 
+    }
+}
+
 
 
 
@@ -41,6 +53,7 @@ express()
   })
 
   .get('/top50/song/:rank', handleRank)
+  .get('/top50/artist/:artist', handleArtist)
 
   // add new endpoints here ☝️
   // ---------------------------------
