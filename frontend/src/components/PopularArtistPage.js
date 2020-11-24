@@ -19,9 +19,11 @@ const PopularArtistPage = () => {
   return (
     <>
       <Header pageTitle="Most Popular Artist" />
-      <Content><SongList 
-        songs={songs}
-      /></Content>
+      <Content>
+        <SongList 
+          songs={songs}
+        />
+      </Content>
     </>
   );
 };

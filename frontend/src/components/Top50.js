@@ -20,9 +20,11 @@ const Top50 = () => {
   return (
     <>
       <Header pageTitle="Top 50 Songs Streamed on Spotify" />
-      <Content><SongList 
-        songs={allSongs}
-      /></Content>
+      <Content>
+        <SongList 
+          songs={allSongs}
+        />
+      </Content>
     </>
   );
 };
