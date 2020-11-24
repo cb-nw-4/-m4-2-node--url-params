@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./Header";
 import Content from "./Content";
+import RandomKey from './RandomKey';
 
 const HomePage = () => {
   const [artists, setArtists] = useState([]);
@@ -31,7 +32,7 @@ const HomePage = () => {
         <h2>Artists on this list</h2>
         <Menu>
           {artists.map((artist) => (
-            <li>
+            <li key={RandomKey()}>
               <Link to={`/music/artist/${artist}`}>{artist}</Link>
             </li>
           ))}

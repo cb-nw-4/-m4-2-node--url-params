@@ -1,5 +1,6 @@
 import React from 'react';
 import SongListItem from './SongListItem';
+import RandomKey from './RandomKey';
 
 const SongList = (props) => {
   return (
@@ -8,6 +9,7 @@ const SongList = (props) => {
         {props.songs.map(song => {
           return (
             <SongListItem
+              key={RandomKey()}
               rank={song.rank}
               title={song.title}
               artist={song.artist}
