@@ -46,6 +46,26 @@ express()
       });
     }
   })
+
+  .get("/top50/artist/:artist", (req,res)=>{
+    const reqArtist = req.params.artist;
+    
+
+    let songData = top50.filter((song)=> song.artist.toLowerCase().includes(reqArtist) )
+
+    if(songData.length == 0){
+      res.status(404).json({
+        status: 404,
+        message: "Song not found",
+      });
+    }else{
+      res.status(200).json({
+        status: 200,
+        data: songData[0]
+      });
+    }
+  })
+
   // add new endpoints here ☝️
   // ---------------------------------
   // Nothing to modify below this line
@@ -60,3 +80,4 @@ express()
 
   // Node spins up our server and sets it to listen on port 8000.
   .listen(8000, () => console.log(`Listening on port 8000`));
+
