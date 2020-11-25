@@ -22,13 +22,34 @@ const handleRank = (req,res) => {
 const handleArtist = (req,res) => {
   const artist = req.params.artist;
   const artistObj = top50.filter(item => item.artist.toLowerCase().replace(" ","") === artist.toLowerCase()); 
-  console.log(artistObj);
+  //console.log(artistObj);
   
     if (artistObj != 0) { 
       res.json({status: 200, data: artistObj}) 
     } else {
       res.json({status: 404}) 
     }
+}
+
+const handlePopularArtist = (req, res) => {
+  const artistList = top50.map( item => item.artist)
+    //console.log(artistList)
+  let artist;
+  for (let i = 0; i < artistList.length; i++) {
+    if (artistList[0] === artistList[i] || artistList[i] === artistList[i+1]) {
+      artist = artistList[i];
+    }
+  }
+    //console.log(artist)
+  const artistObj = top50.filter(item => item.artist.toLowerCase().replace(" ","") === artist.toLowerCase().replace(" ",""));
+    //console.log(artistObj);
+  res.json( {status: 200, data: artistObj}) 
+}
+
+const handleArtistArray = (req, res) => {
+  const artistList = top50.map( item => item.artist)
+  res.json( {status: 200, data: [... new Set (artistList.sort())]}) 
+  //console.log(artistList);
 }
 
 
@@ -54,6 +75,8 @@ express()
 
   .get('/top50/song/:rank', handleRank)
   .get('/top50/artist/:artist', handleArtist)
+  .get('/top50/popular-artist', handlePopularArtist)
+  .get('/top50/artist', handleArtistArray)
 
   // add new endpoints here ☝️
   // ---------------------------------
