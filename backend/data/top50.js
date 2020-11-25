@@ -135,7 +135,7 @@ const top50 = [
     {
         rank: 20,
         title: 'See You Again',
-        artist: 'Wiz Khalifa featuring Charlie Puth	Furious 7',
+        artist: 'Wiz Khalifa featuring Charlie Puth Furious 7',
         streams: 599,
         publicationDate: '10-Mar-15'
     },
@@ -233,7 +233,7 @@ const top50 = [
     {
         rank: 34,
         title: 'The Hills',
-        artist: 'The Weeknd	Beauty Behind the Madness',
+        artist: 'The Weeknd Beauty Behind the Madness',
         streams: 532,
         publicationDate: '28-Aug-15'
     },
