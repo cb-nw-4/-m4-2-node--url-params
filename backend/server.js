@@ -49,14 +49,14 @@ express()
 
   .get("/top50/artist/:artist", (req,res)=>{
     const reqArtist = req.params.artist;
-    
+
 
     let songData = top50.filter((song)=> song.artist.toLowerCase().includes(reqArtist) )
 
     if(songData.length == 0){
       res.status(404).json({
         status: 404,
-        message: "Song not found",
+        message: "Artist not found",
       });
     }else{
       res.status(200).json({
@@ -64,6 +64,25 @@ express()
         data: songData[0]
       });
     }
+  })
+
+  .get("/top50/popular-artist", (req,res)=>{
+    res.status(200).json({
+      status: 200,
+      data: allArtists
+    });
+
+  })
+
+
+  .get("/top50/artist",(req,res)=>{
+    let artistList = top50.map((song)=>song.artist);
+    let filteredList = [...new Set(artistList)];
+
+    res.status(200).json({
+      status: 200,
+      data: filteredList
+    });
   })
 
   // add new endpoints here ☝️
