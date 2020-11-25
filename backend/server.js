@@ -39,6 +39,12 @@ express()
   //exercise 4
   .get(decodeURI("/top50/artist/:singer"), (req, res)=>{
     const artistObject=top50.filter(element=>{
+      console.log("artist",element.artist)
+      console.log(element.artist.toLowerCase().split(' '));
+      console.log(element.artist.toLowerCase().split(' ').join(''));
+      console.log(req.params.singer.toLowerCase().split(' '));
+      console.log(req.params.singer.toLowerCase().split(' ').join(''));
+      console.log("-------------------------------------------------");
       if(element.artist.toLowerCase().split(' ').join('').includes(req.params.singer.toLowerCase().split(' ').join(''))){
         return element;
       }
@@ -69,7 +75,11 @@ express()
       if(count>len){
         finalarr=obj;
         len=count;
+        //console.log("yaaas")
       }
+      //console.log(count, len);
+      count=0;
+      obj=[];
       return finalarr;
       }
     )
