@@ -51,7 +51,7 @@ express()
     const reqArtist = req.params.artist;
 
     let songData = [];
-    top50.forEach((song)=> song.artist.toLowerCase().includes(reqArtist)? songData.push(song):null );
+    top50.forEach((song)=> song.artist.toLowerCase().includes(reqArtist.toLowerCase())? songData.push(song):null );
 
     if(songData.length == 0){
       res.status(404).json({
