@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import SongListItem from "./SongListItem"
 
 const SongList = ({allSongs}) =>{
 
-    console.log("song list: ",allSongs);
     return (
     <ul>
-    {allSongs.forEach((song) =>{
-        return <li>{song.title}</li>;
+    {allSongs.map((song) =>{
+        return <SongListItem song = {song}/>;
     })}
     </ul>
     );
