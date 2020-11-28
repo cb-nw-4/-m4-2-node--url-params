@@ -50,7 +50,6 @@ express()
   .get("/top50/artist/:artist", (req,res)=>{
     const reqArtist = req.params.artist;
 
-
     let songData = [];
     top50.forEach((song)=> song.artist.toLowerCase().includes(reqArtist)? songData.push(song):null );
 
@@ -67,15 +66,6 @@ express()
     }
   })
 
-  .get("/top50/popular-artist", (req,res)=>{
-    res.status(200).json({
-      status: 200,
-      data: allArtists
-    });
-
-  })
-
-
   .get("/top50/artist",(req,res)=>{
     let artistList = top50.map((song)=>song.artist);
     let filteredList = [...new Set(artistList)];
@@ -84,6 +74,44 @@ express()
       status: 200,
       data: filteredList
     });
+  })
+
+  .get("/top50/popular-artist", (req,res)=>{
+
+    let artistList = top50.map((song)=>song.artist);
+    let filteredList = [...new Set(artistList)];
+
+    let dataObject = {};
+    filteredList.forEach((artist)=>{
+      dataObject[artist]=0;
+    });
+
+    //Count occurences
+    top50.forEach((song)=>{
+      if(song.artist in dataObject){
+        dataObject[song.artist]++;
+      }
+    });
+
+    //Find top artist
+    let topArtist = "unknown";
+    let ocurrences = 0;
+    filteredList.forEach((artist)=>{
+      if(dataObject[artist]>ocurrences){
+        topArtist=artist;
+        ocurrences=dataObject[artist];
+      }
+    });
+
+    //Return artist songs
+    let songList = [];
+    top50.forEach((song)=> song.artist.includes(topArtist)? songList.push(song):null );
+
+    res.status(200).json({
+      status: 200,
+      data: songList
+    });
+
   })
 
   // add new endpoints here ☝️
