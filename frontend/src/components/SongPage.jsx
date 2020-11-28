@@ -17,12 +17,11 @@ const SongPage = () => {
 
   return (
     <>
-      <Header pageTitle={`Song #${song.rank}`} />
+      <Header pageTitle={`Song #${song.rank}`} />{" "}
       <SongContainer>
-        <Title>{song.title}</Title>
-        <Artist>{song.artist}</Artist>
-        <StreamCount>{song.streams}</StreamCount>
-      </SongContainer>
+        <Title> {song.title} </Title> <Artist> {song.artist} </Artist>{" "}
+        <StreamCount> {song.streams} </StreamCount>{" "}
+      </SongContainer>{" "}
     </>
   );
 };
