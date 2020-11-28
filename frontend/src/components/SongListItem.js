@@ -47,7 +47,7 @@ const Number = styled.p`
     font-size: 40px;
     margin:0;
     padding-bottom:0;
-    padding-right:50px;
+    width:100px;
 
 `;
 const SongTitle = styled.p`
